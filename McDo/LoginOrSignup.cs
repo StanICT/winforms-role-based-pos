@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+﻿using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -50,7 +50,7 @@ namespace McDo
         }
         private DatabaseHelper db = new DatabaseHelper();
 
-        public void RegisterUser(string name, string password, string confirmPassword, string role)
+        public void RegisterUser(string username, string password, string confirmPassword, string role)
         {
             if (password != confirmPassword)
             {
@@ -63,35 +63,35 @@ namespace McDo
             using var conn = db.GetConnection();
             conn.Open();
 
-            string query = "INSERT INTO users (name, password, role) VALUES (@name,@pass,@role)";
+            string query = "INSERT INTO users (username, password, role) VALUES (@username,@pass,@role)";
             using var cmd = new MySqlCommand(query, conn);
 
-            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@username", username);
             cmd.Parameters.AddWithValue("@pass", hashedPassword);
             cmd.Parameters.AddWithValue("@role", role);
 
             try
             {
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Registered successfully, you're cooking 🔥");
+                MessageBox.Show("Registered successfully.");
             }
             catch (MySqlException ex)
             {
                 if (ex.Number == 1062)
-                    MessageBox.Show("Username already exist bruh 💀");
+                    MessageBox.Show("Username already exist.");
                 else
                     MessageBox.Show("DB Error: " + ex.Message);
             }
         }
-        public void LoginUser(string name, string password, string role)
+        public void LoginUser(string username, string password, string role)
         {
             using var conn = db.GetConnection();
             conn.Open();
 
-            string query = "SELECT password, role FROM users WHERE name=@name LIMIT 1";
+            string query = "SELECT password, role FROM users WHERE username=@username LIMIT 1";
             using var cmd = new MySqlCommand(query, conn);
 
-            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@username", username);
 
             using var reader = cmd.ExecuteReader();
 

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,46 +55,39 @@ namespace McDo
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            string role = radioButton1.Checked ? "admin" : "customer";
-            RegisterUser(txtName.Text, txtPassword.Text, txtConfirmPassword.Text, role);
+            if (txtUsername.Text == "" || txtPassword.Text == "" || txtConfirmPassword.Text == "")
+            {
+                MessageBox.Show("Please fill in all fields.");
+                return;
+            }
 
-            string selectedRole = "";
+            if (txtPassword.Text != txtConfirmPassword.Text)
+            {
+                MessageBox.Show("Passwords do not match.");
+                return;
+            }
 
+            string role = "";
             if (radioButton1.Checked)
-                selectedRole = "Admin";
+                role = "admin";
             else if (radioButton2.Checked)
-                selectedRole = "Customer";
+                role = "customer";
             else
             {
                 MessageBox.Show("Please select a role.");
                 return;
             }
 
-            RegisterUser(txtName.Text, txtName.Text, txtPassword.Text, selectedRole);
-            if (string.IsNullOrWhiteSpace(txtName.Text) || string.IsNullOrWhiteSpace(txtConfirmPassword.Text))
+            using (MySqlConnection conn = new MySqlConnection("server=localhost;user id=root;password=Tantan#0119;database=mcdonalds_db"))
             {
-                MessageBox.Show("Please fill out all fields.");
-                return;
-            }
-
-            if (!radioButton1.Checked && !radioButton2.Checked)
-            {
-                MessageBox.Show("Please select a role.");
-                return;
-            }
-
-            string connectionString = "server=localhost;user id=root;password=Tantan#0119;database=mcdonalds_db;";
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    MessageBox.Show("Connected to MySQL!");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Connection failed: " + ex.Message);
-                }
+                conn.Open();
+                string query = "INSERT INTO users (username, password, role) VALUES (@user, @pass, @role)";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@user", txtUsername.Text);
+                cmd.Parameters.AddWithValue("@pass", txtPassword.Text); // later use hashing
+                cmd.Parameters.AddWithValue("@role", role);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Signup successful!");
             }
 
             var loggingIn = new LogIn();
@@ -128,48 +121,13 @@ namespace McDo
         {
 
         }
-        private void RegisterUser(string name, string username, string password, string role)
-        {
-            string connectionString = "server=localhost;user id=root;password=yourpassword;database=userdb;";
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
-            {
-                string query = "INSERT INTO users (name, username, password, role) VALUES (@name, @username, @password, @role)";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@name", name);
-                cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@password", password);
-                cmd.Parameters.AddWithValue("@role", role);
-
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
-        }
-        private bool ValidateLogin(string username, string password, out string role)
-        {
-            role = "";
-            string connectionString = "server=localhost;user id=root;password=yourpassword;database=userdb;";
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
-            {
-                string query = "SELECT role FROM users WHERE username = @username AND password = @password";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@password", password);
-
-                conn.Open();
-                MySqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    role = reader["role"].ToString();
-                    return true;
-                }
-                return false;
-            }
-        }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
 
         }
+
+        
+
     }
 }

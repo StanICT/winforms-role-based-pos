@@ -32,7 +32,7 @@ namespace McDo
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogIn));
             pictureBox1 = new PictureBox();
             button3 = new Button();
-            textBox1 = new TextBox();
+            txtUsername = new TextBox();
             label1 = new Label();
             label2 = new Label();
             txtPassword = new TextBox();
@@ -40,8 +40,8 @@ namespace McDo
             label4 = new Label();
             button1 = new Button();
             checkBox1 = new CheckBox();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
+            rdoAdmin = new RadioButton();
+            rdoCustomer = new RadioButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -68,16 +68,16 @@ namespace McDo
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
-            // textBox1
+            // txtUsername
             // 
-            textBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textBox1.BackColor = Color.White;
-            textBox1.Font = new Font("Helvetica", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(33, 361);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "*Name";
-            textBox1.Size = new Size(362, 25);
-            textBox1.TabIndex = 20;
+            txtUsername.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            txtUsername.BackColor = Color.White;
+            txtUsername.Font = new Font("Helvetica", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUsername.Location = new Point(33, 361);
+            txtUsername.Name = "txtUsername";
+            txtUsername.PlaceholderText = "*Username";
+            txtUsername.Size = new Size(362, 25);
+            txtUsername.TabIndex = 20;
             // 
             // label1
             // 
@@ -160,29 +160,29 @@ namespace McDo
             checkBox1.UseVisualStyleBackColor = true;
             checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
-            // radioButton1
+            // rdoAdmin
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Font = new Font("Helvetica", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            radioButton1.Location = new Point(94, 317);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(82, 25);
-            radioButton1.TabIndex = 29;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Admin";
-            radioButton1.UseVisualStyleBackColor = true;
+            rdoAdmin.AutoSize = true;
+            rdoAdmin.Font = new Font("Helvetica", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            rdoAdmin.Location = new Point(94, 317);
+            rdoAdmin.Name = "rdoAdmin";
+            rdoAdmin.Size = new Size(82, 25);
+            rdoAdmin.TabIndex = 29;
+            rdoAdmin.TabStop = true;
+            rdoAdmin.Text = "Admin";
+            rdoAdmin.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rdoCustomer
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Font = new Font("Helvetica", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            radioButton2.Location = new Point(231, 317);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(109, 25);
-            radioButton2.TabIndex = 30;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Customer";
-            radioButton2.UseVisualStyleBackColor = true;
+            rdoCustomer.AutoSize = true;
+            rdoCustomer.Font = new Font("Helvetica", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            rdoCustomer.Location = new Point(231, 317);
+            rdoCustomer.Name = "rdoCustomer";
+            rdoCustomer.Size = new Size(109, 25);
+            rdoCustomer.TabIndex = 30;
+            rdoCustomer.TabStop = true;
+            rdoCustomer.Text = "Customer";
+            rdoCustomer.UseVisualStyleBackColor = true;
             // 
             // LogIn
             // 
@@ -190,8 +190,8 @@ namespace McDo
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(432, 753);
-            Controls.Add(radioButton2);
-            Controls.Add(radioButton1);
+            Controls.Add(rdoCustomer);
+            Controls.Add(rdoAdmin);
             Controls.Add(checkBox1);
             Controls.Add(button1);
             Controls.Add(label4);
@@ -199,7 +199,7 @@ namespace McDo
             Controls.Add(txtPassword);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(textBox1);
+            Controls.Add(txtUsername);
             Controls.Add(button3);
             Controls.Add(pictureBox1);
             Name = "LogIn";
@@ -220,7 +220,7 @@ namespace McDo
 
         private PictureBox pictureBox1;
         private Button button3;
-        private TextBox textBox1;
+        private TextBox txtUsername;
         private Label label1;
         private Label label2;
         private TextBox txtPassword;
@@ -228,7 +228,7 @@ namespace McDo
         private Label label4;
         private Button button1;
         private CheckBox checkBox1;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
+        private RadioButton rdoAdmin;
+        private RadioButton rdoCustomer;
     }
 }

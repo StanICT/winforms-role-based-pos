@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignUp));
             pictureBox1 = new PictureBox();
             button3 = new Button();
-            txtName = new TextBox();
+            txtUsername = new TextBox();
             label1 = new Label();
             label2 = new Label();
             txtPassword = new TextBox();
@@ -42,6 +42,7 @@
             checkBox1 = new CheckBox();
             radioButton1 = new RadioButton();
             radioButton2 = new RadioButton();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -68,17 +69,17 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
-            // txtName
+            // txtUsername
             // 
-            txtName.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            txtName.BackColor = Color.White;
-            txtName.Font = new Font("Helvetica", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtName.Location = new Point(35, 361);
-            txtName.Name = "txtName";
-            txtName.PlaceholderText = "*Name";
-            txtName.Size = new Size(362, 25);
-            txtName.TabIndex = 9;
-            txtName.TextChanged += textBox1_TextChanged;
+            txtUsername.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            txtUsername.BackColor = Color.White;
+            txtUsername.Font = new Font("Helvetica", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUsername.Location = new Point(35, 361);
+            txtUsername.Name = "txtUsername";
+            txtUsername.PlaceholderText = "*Username";
+            txtUsername.Size = new Size(362, 25);
+            txtUsername.TabIndex = 9;
+            txtUsername.TextChanged += textBox1_TextChanged;
             // 
             // label1
             // 
@@ -199,12 +200,22 @@
             radioButton2.Text = "Customer";
             radioButton2.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            button2.Location = new Point(224, 91);
+            button2.Name = "button2";
+            button2.Size = new Size(94, 29);
+            button2.TabIndex = 20;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // SignUp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(432, 753);
+            Controls.Add(button2);
             Controls.Add(radioButton2);
             Controls.Add(radioButton1);
             Controls.Add(checkBox1);
@@ -215,7 +226,7 @@
             Controls.Add(txtPassword);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(txtName);
+            Controls.Add(txtUsername);
             Controls.Add(button3);
             Controls.Add(pictureBox1);
             Name = "SignUp";
@@ -230,7 +241,7 @@
 
         private PictureBox pictureBox1;
         private Button button3;
-        private TextBox txtName;
+        private TextBox txtUsername;
         private Label label1;
         private Label label2;
         private TextBox txtPassword;
@@ -242,5 +253,6 @@
         private CheckBox checkBox1;
         private RadioButton radioButton1;
         private RadioButton radioButton2;
+        private Button button2;
     }
 }
