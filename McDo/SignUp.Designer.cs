@@ -42,7 +42,6 @@
             checkBox1 = new CheckBox();
             radioButton1 = new RadioButton();
             radioButton2 = new RadioButton();
-            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -97,9 +96,9 @@
             label2.Font = new Font("Helvetica", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.Location = new Point(35, 262);
             label2.Name = "label2";
-            label2.Size = new Size(203, 17);
+            label2.Size = new Size(216, 17);
             label2.TabIndex = 11;
-            label2.Text = "Please fill in your login details.";
+            label2.Text = "Please fill in your signup details.";
             label2.Click += label2_Click;
             // 
             // txtPassword
@@ -200,22 +199,12 @@
             radioButton2.Text = "Customer";
             radioButton2.UseVisualStyleBackColor = true;
             // 
-            // button2
-            // 
-            button2.Location = new Point(224, 91);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 20;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            // 
             // SignUp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(432, 753);
-            Controls.Add(button2);
             Controls.Add(radioButton2);
             Controls.Add(radioButton1);
             Controls.Add(checkBox1);
@@ -253,6 +242,5 @@
         private CheckBox checkBox1;
         private RadioButton radioButton1;
         private RadioButton radioButton2;
-        private Button button2;
     }
 }

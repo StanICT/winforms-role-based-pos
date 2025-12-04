@@ -9,6 +9,7 @@ namespace McDo
         public LogIn()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private readonly string connectionString =
@@ -89,5 +90,32 @@ namespace McDo
 
         private void LogIn_Load_1(object sender, EventArgs e) { }
         private void txtPassword_TextChanged(object sender, EventArgs e) { }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void rdoCustomer_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var signupForm = new SignUp();
+            this.Close();
+            signupForm.Show();
+        }
     }
 }

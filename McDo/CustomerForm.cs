@@ -13,6 +13,7 @@ namespace McDo
         public CustomerForm()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
     }
 }
