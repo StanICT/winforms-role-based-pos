@@ -15,8 +15,7 @@ namespace McDo.Setup
 
     public class Setup
     {
-        protected string ProjectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\"));
-        protected string? ConfigFolder = null;
+        protected string ConfigFolder = Path.Combine(AppContext.BaseDirectory, "config");
 
         protected JsonSerializerOptions SerializerOptions = new() { WriteIndented = true };
 
@@ -36,8 +35,6 @@ namespace McDo.Setup
 
         protected void SetupDir()
         {
-            ConfigFolder ??= Path.Combine(ProjectRoot, "config");
-
             if (!Directory.Exists(ConfigFolder))
                 Directory.CreateDirectory(ConfigFolder);
         }

@@ -1,5 +1,3 @@
-using DotNetEnv;
-
 namespace McDo
 {
     internal static class Program
@@ -10,9 +8,6 @@ namespace McDo
         [STAThread]
         static void Main()
         {
-            // Load Environment Variables
-            Env.Load();
-
             // Run the McDo Main File
             McDoMain.Run();
         }

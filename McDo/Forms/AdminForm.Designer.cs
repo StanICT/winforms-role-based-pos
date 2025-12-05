@@ -34,180 +34,138 @@ namespace McDo.Forms
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
-            flowSidebar = new FlowLayoutPanel();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button5 = new Button();
-            pictureBox1 = new PictureBox();
-            label2 = new Label();
-            button4 = new Button();
-            label1 = new Label();
-            btnAddCategory = new Button();
-            pictureBox2 = new PictureBox();
-            flowSidebar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            Category_SelectionSidebar = new FlowLayoutPanel();
+            McDo_Icon = new PictureBox();
+            Category_DescriptionLabel = new Label();
+            Category_ProductAdd = new Button();
+            Category_NameLabel = new Label();
+            Category_Add = new Button();
+            RandomPictureBox_TODO = new PictureBox();
+            Category_ProductList = new ListView();
+            ((System.ComponentModel.ISupportInitialize)McDo_Icon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)RandomPictureBox_TODO).BeginInit();
             SuspendLayout();
             // 
-            // flowSidebar
+            // Category_SelectionSidebar
             // 
-            flowSidebar.AutoScroll = true;
-            flowSidebar.Controls.Add(button1);
-            flowSidebar.Controls.Add(button2);
-            flowSidebar.Controls.Add(button3);
-            flowSidebar.Controls.Add(button5);
-            flowSidebar.FlowDirection = FlowDirection.TopDown;
-            flowSidebar.Location = new Point(-2, 162);
-            flowSidebar.Name = "flowSidebar";
-            flowSidebar.Size = new Size(132, 467);
-            flowSidebar.TabIndex = 6;
-            flowSidebar.WrapContents = false;
+            Category_SelectionSidebar.AutoScroll = true;
+            Category_SelectionSidebar.FlowDirection = FlowDirection.TopDown;
+            Category_SelectionSidebar.Location = new Point(1, 138);
+            Category_SelectionSidebar.Name = "Category_SelectionSidebar";
+            Category_SelectionSidebar.Size = new Size(113, 251);
+            Category_SelectionSidebar.TabIndex = 6;
+            Category_SelectionSidebar.WrapContents = false;
             // 
-            // button1
+            // McDo_Icon
             // 
-            button1.Font = new Font("Helvetica", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(3, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(129, 39);
-            button1.TabIndex = 8;
-            button1.Text = "Chicken";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            McDo_Icon.BackColor = Color.WhiteSmoke;
+            McDo_Icon.BorderStyle = BorderStyle.Fixed3D;
+            McDo_Icon.Image = (Image)resources.GetObject("McDo_Icon.Image");
+            McDo_Icon.Location = new Point(-2, -2);
+            McDo_Icon.Name = "McDo_Icon";
+            McDo_Icon.Size = new Size(116, 117);
+            McDo_Icon.SizeMode = PictureBoxSizeMode.StretchImage;
+            McDo_Icon.TabIndex = 1;
+            McDo_Icon.TabStop = false;
             // 
-            // button2
+            // Category_DescriptionLabel
             // 
-            button2.Font = new Font("Helvetica", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.Location = new Point(3, 48);
-            button2.Name = "button2";
-            button2.Size = new Size(129, 39);
-            button2.TabIndex = 9;
-            button2.Text = "Burgers";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            Category_DescriptionLabel.AutoSize = true;
+            Category_DescriptionLabel.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Category_DescriptionLabel.Location = new Point(148, 84);
+            Category_DescriptionLabel.Name = "Category_DescriptionLabel";
+            Category_DescriptionLabel.Size = new Size(243, 16);
+            Category_DescriptionLabel.TabIndex = 4;
+            Category_DescriptionLabel.Text = "Manage products under this category";
             // 
-            // button3
+            // Category_ProductAdd
             // 
-            button3.Font = new Font("Helvetica", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button3.Location = new Point(3, 93);
-            button3.Name = "button3";
-            button3.Size = new Size(129, 39);
-            button3.TabIndex = 10;
-            button3.Text = "Fries";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            Category_ProductAdd.BackColor = Color.Gold;
+            Category_ProductAdd.FlatStyle = FlatStyle.Popup;
+            Category_ProductAdd.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Category_ProductAdd.ImageAlign = ContentAlignment.TopRight;
+            Category_ProductAdd.Location = new Point(606, 423);
+            Category_ProductAdd.Name = "Category_ProductAdd";
+            Category_ProductAdd.Size = new Size(129, 72);
+            Category_ProductAdd.TabIndex = 5;
+            Category_ProductAdd.Text = "Add Product";
+            Category_ProductAdd.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // Category_NameLabel
             // 
-            button5.Font = new Font("Helvetica", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button5.Location = new Point(3, 138);
-            button5.Name = "button5";
-            button5.Size = new Size(129, 39);
-            button5.TabIndex = 11;
-            button5.Text = "Drinks";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
+            Category_NameLabel.AutoSize = true;
+            Category_NameLabel.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Category_NameLabel.Location = new Point(148, 40);
+            Category_NameLabel.Name = "Category_NameLabel";
+            Category_NameLabel.Size = new Size(120, 31);
+            Category_NameLabel.TabIndex = 3;
+            Category_NameLabel.Text = "Chicken";
             // 
-            // pictureBox1
+            // Category_Add
             // 
-            pictureBox1.BackColor = Color.WhiteSmoke;
-            pictureBox1.BorderStyle = BorderStyle.Fixed3D;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(-2, -2);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(132, 137);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
+            Category_Add.BackColor = Color.Gold;
+            Category_Add.FlatStyle = FlatStyle.Popup;
+            Category_Add.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Category_Add.Location = new Point(1, 395);
+            Category_Add.Name = "Category_Add";
+            Category_Add.Size = new Size(116, 33);
+            Category_Add.TabIndex = 6;
+            Category_Add.Text = "Add Category";
+            Category_Add.UseVisualStyleBackColor = false;
+            Category_Add.Click += Category_Add_Click;
             // 
-            // label2
+            // RandomPictureBox_TODO
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Helvetica", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(169, 99);
-            label2.Name = "label2";
-            label2.Size = new Size(231, 17);
-            label2.TabIndex = 4;
-            label2.Text = "Browse between categories below";
+            RandomPictureBox_TODO.Location = new Point(515, 423);
+            RandomPictureBox_TODO.Name = "RandomPictureBox_TODO";
+            RandomPictureBox_TODO.Size = new Size(73, 72);
+            RandomPictureBox_TODO.SizeMode = PictureBoxSizeMode.StretchImage;
+            RandomPictureBox_TODO.TabIndex = 7;
+            RandomPictureBox_TODO.TabStop = false;
             // 
-            // button4
+            // Category_ProductList
             // 
-            button4.BackColor = Color.Gold;
-            button4.FlatStyle = FlatStyle.Popup;
-            button4.Font = new Font("Helvetica", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button4.ImageAlign = ContentAlignment.TopRight;
-            button4.Location = new Point(273, 669);
-            button4.Name = "button4";
-            button4.Size = new Size(147, 85);
-            button4.TabIndex = 5;
-            button4.Text = "Add Product";
-            button4.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Helvetica Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(211, 40);
-            label1.Name = "label1";
-            label1.Size = new Size(150, 37);
-            label1.TabIndex = 3;
-            label1.Text = "Chicken";
-            // 
-            // btnAddCategory
-            // 
-            btnAddCategory.BackColor = Color.Gold;
-            btnAddCategory.FlatStyle = FlatStyle.Popup;
-            btnAddCategory.Font = new Font("Helvetica", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAddCategory.Location = new Point(12, 669);
-            btnAddCategory.Name = "btnAddCategory";
-            btnAddCategory.Size = new Size(132, 39);
-            btnAddCategory.TabIndex = 6;
-            btnAddCategory.Text = "Add Category";
-            btnAddCategory.UseVisualStyleBackColor = false;
-            btnAddCategory.Click += btnAddCategory_Click;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Location = new Point(169, 669);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(83, 85);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 7;
-            pictureBox2.TabStop = false;
+            Category_ProductList.Location = new Point(148, 141);
+            Category_ProductList.Name = "Category_ProductList";
+            Category_ProductList.Size = new Size(587, 276);
+            Category_ProductList.TabIndex = 8;
+            Category_ProductList.UseCompatibleStateImageBehavior = false;
             // 
             // AdminForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(432, 753);
-            Controls.Add(pictureBox2);
-            Controls.Add(btnAddCategory);
-            Controls.Add(button4);
-            Controls.Add(label2);
-            Controls.Add(flowSidebar);
-            Controls.Add(pictureBox1);
-            Controls.Add(label1);
+            ClientSize = new Size(747, 507);
+            Controls.Add(Category_ProductList);
+            Controls.Add(RandomPictureBox_TODO);
+            Controls.Add(Category_Add);
+            Controls.Add(Category_ProductAdd);
+            Controls.Add(Category_DescriptionLabel);
+            Controls.Add(Category_SelectionSidebar);
+            Controls.Add(McDo_Icon);
+            Controls.Add(Category_NameLabel);
             Name = "AdminForm";
             Text = "Admin Form";
-            flowSidebar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            Load += AdminForm_Load;
+            ((System.ComponentModel.ISupportInitialize)McDo_Icon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)RandomPictureBox_TODO).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private PictureBox pictureBox1;
-        private Label label2;
-        private Button button4;
-        private Label label1;
-        private FlowLayoutPanel flowSidebar;
-        private Button btnAddCategory;
-        private PictureBox pictureBox2;
+        private PictureBox McDo_Icon;
+        private Label Category_DescriptionLabel;
+        private Button Category_ProductAdd;
+        private Label Category_NameLabel;
+        private FlowLayoutPanel Category_SelectionSidebar;
+        private Button Category_Add;
+        private PictureBox RandomPictureBox_TODO;
         private Button button1;
         private Button button3;
         private Button button2;
         private Button button5;
+        private ListView Category_ProductList;
     }
 }

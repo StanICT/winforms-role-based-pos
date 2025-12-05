@@ -9,7 +9,7 @@ public class AppDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        var connectionString = $"Server=localhost;Database={Environment.GetEnvironmentVariable("DB_FILE")};User=root;Password={Environment.GetEnvironmentVariable("DB_PASSWORD")};";
-        options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+        var connectionString = "Data Source=__mcdonalds_storage__";
+        options.UseSqlite(connectionString);
     }
 }
