@@ -1,3 +1,5 @@
+using DotNetEnv;
+
 namespace McDo
 {
     internal static class Program
@@ -8,6 +10,8 @@ namespace McDo
         [STAThread]
         static void Main()
         {
+            Env.Load();
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();

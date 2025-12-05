@@ -12,3 +12,6 @@ obj/
 # Logs and caches
 *.log
 *.cache
+
+# Environment Files
+*.env
