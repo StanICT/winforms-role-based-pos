@@ -10,12 +10,11 @@ namespace McDo
         [STAThread]
         static void Main()
         {
+            // Load Environment Variables
             Env.Load();
 
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new McDo());
+            // Run the McDo Main File
+            McDoMain.Run();
         }
     }
 }

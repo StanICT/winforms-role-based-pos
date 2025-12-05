@@ -15,3 +15,7 @@ obj/
 
 # Environment Files
 *.env
+
+# Configuration Files
+/McDo/config
+/McDo/data
