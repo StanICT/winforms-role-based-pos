@@ -2,6 +2,8 @@ namespace McDo
 {
     public partial class McDo : Form
     {
+        public static object Properties { get; internal set; }
+
         public McDo()
         {
             InitializeComponent();
