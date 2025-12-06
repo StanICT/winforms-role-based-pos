@@ -127,6 +127,7 @@ namespace McDo.Forms
             Category_ProductList.Size = new Size(587, 287);
             Category_ProductList.TabIndex = 8;
             Category_ProductList.UseCompatibleStateImageBehavior = false;
+            Category_ProductList.MouseClick += Category_ProductList_MouseClick;
             // 
             // Category_DeleteButton
             // 
@@ -172,10 +173,6 @@ namespace McDo.Forms
         private Label Category_NameLabel;
         private FlowLayoutPanel Category_SelectionSidebar;
         private Button Category_Add;
-        private Button button1;
-        private Button button3;
-        private Button button2;
-        private Button button5;
         private ListView Category_ProductList;
         private Button Category_DeleteButton;
     }

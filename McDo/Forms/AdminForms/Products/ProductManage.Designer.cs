@@ -1,6 +1,6 @@
 ﻿namespace McDo.Forms.AdminForms.Products
 {
-    partial class ProductAdd
+    partial class ProductManage
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductAdd));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductManage));
             McDo_Icon = new PictureBox();
             Product_DescInput = new McDo.Components.TextArea(components);
             Product_DescLabel = new Label();
@@ -39,9 +39,10 @@
             Product_PriceInput = new TextBox();
             Product_Icon = new PictureBox();
             Product_IconLabel = new Label();
-            Product_AddButton = new Button();
+            Product_EditButton = new Button();
             Product_IconFileInput = new OpenFileDialog();
             Product_PriceCurrencyDisplay = new Button();
+            Product_DeleteButton = new Button();
             ((System.ComponentModel.ISupportInitialize)McDo_Icon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Product_Icon).BeginInit();
             SuspendLayout();
@@ -137,16 +138,16 @@
             Product_IconLabel.TabIndex = 14;
             Product_IconLabel.Text = "Product Icon";
             // 
-            // Product_AddButton
+            // Product_EditButton
             // 
-            Product_AddButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            Product_AddButton.Location = new Point(377, 323);
-            Product_AddButton.Name = "Product_AddButton";
-            Product_AddButton.Size = new Size(112, 28);
-            Product_AddButton.TabIndex = 15;
-            Product_AddButton.Text = "Add";
-            Product_AddButton.UseVisualStyleBackColor = true;
-            Product_AddButton.Click += Product_AddButton_Click;
+            Product_EditButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            Product_EditButton.Location = new Point(377, 323);
+            Product_EditButton.Name = "Product_EditButton";
+            Product_EditButton.Size = new Size(112, 28);
+            Product_EditButton.TabIndex = 15;
+            Product_EditButton.Text = "Edit";
+            Product_EditButton.UseVisualStyleBackColor = true;
+            Product_EditButton.Click += Product_EditButton_Click;
             // 
             // Product_IconFileInput
             // 
@@ -162,14 +163,29 @@
             Product_PriceCurrencyDisplay.Text = "PHP";
             Product_PriceCurrencyDisplay.UseVisualStyleBackColor = true;
             // 
-            // ProductAdd
+            // Product_DeleteButton
             // 
-            AcceptButton = Product_AddButton;
+            Product_DeleteButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            Product_DeleteButton.BackColor = Color.Firebrick;
+            Product_DeleteButton.FlatStyle = FlatStyle.Popup;
+            Product_DeleteButton.ForeColor = Color.White;
+            Product_DeleteButton.Location = new Point(248, 323);
+            Product_DeleteButton.Name = "Product_DeleteButton";
+            Product_DeleteButton.Size = new Size(112, 28);
+            Product_DeleteButton.TabIndex = 17;
+            Product_DeleteButton.Text = "Delete";
+            Product_DeleteButton.UseVisualStyleBackColor = false;
+            Product_DeleteButton.Click += Product_DeleteButton_Click;
+            // 
+            // ProductManage
+            // 
+            AcceptButton = Product_EditButton;
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(514, 375);
+            Controls.Add(Product_DeleteButton);
             Controls.Add(Product_PriceCurrencyDisplay);
-            Controls.Add(Product_AddButton);
+            Controls.Add(Product_EditButton);
             Controls.Add(Product_IconLabel);
             Controls.Add(Product_Icon);
             Controls.Add(Product_PriceInput);
@@ -180,9 +196,8 @@
             Controls.Add(Product_NameInput);
             Controls.Add(McDo_Icon);
             MinimumSize = new Size(530, 416);
-            Name = "ProductAdd";
-            Text = "ProductAdd";
-            Load += ProductAdd_Load;
+            Name = "ProductManage";
+            Text = "ProductManage";
             ((System.ComponentModel.ISupportInitialize)McDo_Icon).EndInit();
             ((System.ComponentModel.ISupportInitialize)Product_Icon).EndInit();
             ResumeLayout(false);
@@ -200,8 +215,9 @@
         private TextBox Product_PriceInput;
         private PictureBox Product_Icon;
         private Label Product_IconLabel;
-        private Button Product_AddButton;
+        private Button Product_EditButton;
         private OpenFileDialog Product_IconFileInput;
         private Button Product_PriceCurrencyDisplay;
+        private Button Product_DeleteButton;
     }
 }
