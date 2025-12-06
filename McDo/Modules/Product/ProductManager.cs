@@ -30,18 +30,19 @@
             if (category == null)
                 return null;
 
-            RemoveCategory(category);
+            Context.Categories.Remove(category);
+            Context.SaveChanges();
+
             return category;
         }
 
         public bool RemoveCategory(CategoryShape category)
         {
-            if (!Context.Categories.Contains(category))
+            CategoryShape? actual = Context.Categories.FirstOrDefault(c => c.Id == category.Id);
+            if (actual == null)
                 return false;
 
-            Context.Categories.Remove(category);
-            Context.Products.Where(p => p.CategoryId == category.Id).ExecuteDelete();
-
+            Context.Categories.Remove(actual);
             Context.SaveChanges();
 
             return true;

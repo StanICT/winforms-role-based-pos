@@ -15,11 +15,40 @@ namespace McDo.Forms
             Main = main;
 
             InitializeComponent();
+
+            Setup();
         }
+
+        protected void Setup()
+        {
+            SetupCategoryPanel();
+        }
+
+        protected void SetupCategoryPanel()
+        {
+            Category_NameLabel.Text = "N/A";
+            Category_DescriptionLabel.Text = "N/A";
+
+            SetupProductList();
+        }
+
+        protected void SetupProductList()
+        {
+            Category_ProductList.LargeImageList = new()
+            {
+                ImageSize = new Size(64, 64),
+            };
+        }
+
+        protected void LoadInitialCategory()
+        {
+            LoadCategorySelectionSidebar(0);
+        }
+
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
-            LoadCategorySelectionSidebar();
+            LoadInitialCategory();
         }
 
         private void Category_Add_Click(object sender, EventArgs e)
@@ -39,7 +68,7 @@ namespace McDo.Forms
             if (result != DialogResult.Yes)
                 return;
 
-            Main.Products.RemoveCategory(ActiveCategory.Name);
+            Main.Products.RemoveCategory(ActiveCategory);
             LoadCategorySelectionSidebar();
         }
 
@@ -58,32 +87,52 @@ namespace McDo.Forms
 
         // UTILITY FUNCTIONS
 
-        private void LoadCategorySelectionSidebar()
+        private void LoadCategorySelectionSidebar(int active = -1)
         {
-            List<Category> categories = Main.Products.GetAllCategories();
-
-            if (categories.Count != 0)
-                SetActiveCategory(categories[0]);
-
             Category_SelectionSidebar.Controls.Clear();
 
-            foreach (Category category in categories)
-                Category_SelectionSidebar.Controls.Add(CreateCategoryButton(category));
+            List<Category> categories = Main.Products.GetAllCategories();
+
+            for (int i = 0; i < categories.Count; ++i)
+            {
+                var category = categories[i];
+                var button = CreateCategoryButton(category);
+
+                Category_SelectionSidebar.Controls.Add(button);
+
+                if (i == active)
+                {
+                    SetActiveCategory(category);
+                    button.Select();
+                }
+            }
         }
 
         private void LoadCategoryProducts(Category category)
         {
-            Category_ProductList.Items.Clear();
+            var pList = Category_ProductList;
+            var pListItems = pList.Items;
+
+            pListItems.Clear();
+
+            var images = pList.LargeImageList!.Images;
+            images.Clear();
 
             category.Products.ForEach(p =>
             {
+                string key = $"{p.Name}_{images.Count}";
+
+                using (var memstream = new MemoryStream(p.Icon))
+                    images.Add(key, Image.FromStream(memstream));
+
                 ListViewItem item = new()
                 {
-                    Text = $"{p.Name}\nPhp{p.Price}",
-                    ToolTipText = $"{p.Name} [Php{p.Price}]\n{p.Description}",
+                    Text = p.Name,
+                    ImageKey = key,
+                    BackColor = Color.Goldenrod,
                 };
 
-                Category_ProductList.Items.Add(item);
+                pListItems.Add(item);
             });
         }
 

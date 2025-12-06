@@ -12,4 +12,11 @@ public class AppDbContext : DbContext
         var connectionString = "Data Source=__mcdonalds_storage__";
         options.UseSqlite(connectionString);
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        //base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Product>().HasOne(p => p.Category).WithMany(p => p.Products).HasForeignKey(p => p.CategoryId).OnDelete(DeleteBehavior.Cascade);
+    }
 }

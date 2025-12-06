@@ -47,6 +47,7 @@ namespace McDo.Forms
             // 
             // Category_SelectionSidebar
             // 
+            Category_SelectionSidebar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             Category_SelectionSidebar.AutoScroll = true;
             Category_SelectionSidebar.FlowDirection = FlowDirection.TopDown;
             Category_SelectionSidebar.Location = new Point(1, 138);
@@ -69,16 +70,18 @@ namespace McDo.Forms
             // 
             // Category_DescriptionLabel
             // 
+            Category_DescriptionLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             Category_DescriptionLabel.AutoSize = true;
             Category_DescriptionLabel.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Category_DescriptionLabel.Location = new Point(148, 70);
             Category_DescriptionLabel.Name = "Category_DescriptionLabel";
-            Category_DescriptionLabel.Size = new Size(243, 16);
+            Category_DescriptionLabel.Size = new Size(29, 16);
             Category_DescriptionLabel.TabIndex = 4;
-            Category_DescriptionLabel.Text = "Manage products under this category";
+            Category_DescriptionLabel.Text = "N/A";
             // 
             // Category_ProductAdd
             // 
+            Category_ProductAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             Category_ProductAdd.BackColor = Color.Gold;
             Category_ProductAdd.FlatStyle = FlatStyle.Popup;
             Category_ProductAdd.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -93,16 +96,18 @@ namespace McDo.Forms
             // 
             // Category_NameLabel
             // 
+            Category_NameLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             Category_NameLabel.AutoSize = true;
             Category_NameLabel.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Category_NameLabel.Location = new Point(148, 24);
             Category_NameLabel.Name = "Category_NameLabel";
-            Category_NameLabel.Size = new Size(120, 31);
+            Category_NameLabel.Size = new Size(63, 31);
             Category_NameLabel.TabIndex = 3;
-            Category_NameLabel.Text = "Chicken";
+            Category_NameLabel.Text = "N/A";
             // 
             // Category_Add
             // 
+            Category_Add.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             Category_Add.BackColor = Color.Gold;
             Category_Add.FlatStyle = FlatStyle.Popup;
             Category_Add.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -116,6 +121,7 @@ namespace McDo.Forms
             // 
             // Category_ProductList
             // 
+            Category_ProductList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             Category_ProductList.Location = new Point(148, 141);
             Category_ProductList.Name = "Category_ProductList";
             Category_ProductList.Size = new Size(587, 287);
@@ -124,6 +130,7 @@ namespace McDo.Forms
             // 
             // Category_DeleteButton
             // 
+            Category_DeleteButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             Category_DeleteButton.BackColor = Color.Gold;
             Category_DeleteButton.FlatStyle = FlatStyle.Popup;
             Category_DeleteButton.Font = new Font("Arial", 8.150944F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -149,6 +156,7 @@ namespace McDo.Forms
             Controls.Add(Category_SelectionSidebar);
             Controls.Add(McDo_Icon);
             Controls.Add(Category_NameLabel);
+            MinimumSize = new Size(525, 548);
             Name = "AdminForm";
             Text = "Admin Form";
             Load += AdminForm_Load;
