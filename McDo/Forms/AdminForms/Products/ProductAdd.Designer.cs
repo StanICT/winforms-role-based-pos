@@ -62,9 +62,13 @@
             // Product_DescInput
             // 
             Product_DescInput.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+<<<<<<< HEAD
             Product_DescInput.Font = new Font("Helvetica", 9F);
             Product_DescInput.Location = new Point(157, 91);
             Product_DescInput.Margin = new Padding(3, 4, 3, 4);
+=======
+            Product_DescInput.Location = new Point(137, 77);
+>>>>>>> 782bbf2f60df7c7da6b3df2c01340e7adb97556b
             Product_DescInput.Name = "Product_DescInput";
             Product_DescInput.Placeholder = "Fries and burgers you'll never forget, ...";
             Product_DescInput.Size = new Size(402, 78);
@@ -96,9 +100,13 @@
             // Product_NameInput
             // 
             Product_NameInput.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+<<<<<<< HEAD
             Product_NameInput.Font = new Font("Helvetica", 9F);
             Product_NameInput.Location = new Point(157, 34);
             Product_NameInput.Margin = new Padding(3, 4, 3, 4);
+=======
+            Product_NameInput.Location = new Point(137, 29);
+>>>>>>> 782bbf2f60df7c7da6b3df2c01340e7adb97556b
             Product_NameInput.Name = "Product_NameInput";
             Product_NameInput.PlaceholderText = "Fries and Burgers, etc ...";
             Product_NameInput.Size = new Size(402, 25);
@@ -108,8 +116,12 @@
             // 
             Product_PriceLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             Product_PriceLabel.AutoSize = true;
+<<<<<<< HEAD
             Product_PriceLabel.Font = new Font("Helvetica", 9F);
             Product_PriceLabel.Location = new Point(234, 192);
+=======
+            Product_PriceLabel.Location = new Point(205, 163);
+>>>>>>> 782bbf2f60df7c7da6b3df2c01340e7adb97556b
             Product_PriceLabel.Name = "Product_PriceLabel";
             Product_PriceLabel.Size = new Size(176, 17);
             Product_PriceLabel.TabIndex = 9;
@@ -118,12 +130,19 @@
             // Product_PriceInput
             // 
             Product_PriceInput.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+<<<<<<< HEAD
             Product_PriceInput.Font = new Font("Helvetica", 9F);
             Product_PriceInput.Location = new Point(291, 215);
             Product_PriceInput.Margin = new Padding(3, 4, 3, 4);
             Product_PriceInput.Name = "Product_PriceInput";
             Product_PriceInput.PlaceholderText = "Php35.00, Php75.50, Php129.99, ...";
             Product_PriceInput.Size = new Size(267, 25);
+=======
+            Product_PriceInput.Location = new Point(255, 183);
+            Product_PriceInput.Name = "Product_PriceInput";
+            Product_PriceInput.PlaceholderText = "Php35.00, Php75.50, Php129.99, ...";
+            Product_PriceInput.Size = new Size(234, 25);
+>>>>>>> 782bbf2f60df7c7da6b3df2c01340e7adb97556b
             Product_PriceInput.TabIndex = 10;
             // 
             // Product_Icon
@@ -152,9 +171,13 @@
             // Product_AddButton
             // 
             Product_AddButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+<<<<<<< HEAD
             Product_AddButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Product_AddButton.Location = new Point(431, 380);
             Product_AddButton.Margin = new Padding(3, 4, 3, 4);
+=======
+            Product_AddButton.Location = new Point(377, 323);
+>>>>>>> 782bbf2f60df7c7da6b3df2c01340e7adb97556b
             Product_AddButton.Name = "Product_AddButton";
             Product_AddButton.Size = new Size(128, 33);
             Product_AddButton.TabIndex = 15;
@@ -169,11 +192,17 @@
             // Product_PriceCurrencyDisplay
             // 
             Product_PriceCurrencyDisplay.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+<<<<<<< HEAD
             Product_PriceCurrencyDisplay.Font = new Font("Helvetica", 9F);
             Product_PriceCurrencyDisplay.Location = new Point(234, 215);
             Product_PriceCurrencyDisplay.Margin = new Padding(3, 4, 3, 4);
             Product_PriceCurrencyDisplay.Name = "Product_PriceCurrencyDisplay";
             Product_PriceCurrencyDisplay.Size = new Size(53, 29);
+=======
+            Product_PriceCurrencyDisplay.Location = new Point(205, 183);
+            Product_PriceCurrencyDisplay.Name = "Product_PriceCurrencyDisplay";
+            Product_PriceCurrencyDisplay.Size = new Size(46, 25);
+>>>>>>> 782bbf2f60df7c7da6b3df2c01340e7adb97556b
             Product_PriceCurrencyDisplay.TabIndex = 16;
             Product_PriceCurrencyDisplay.Text = "PHP";
             Product_PriceCurrencyDisplay.UseVisualStyleBackColor = true;
@@ -183,7 +212,11 @@
             AcceptButton = Product_AddButton;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+<<<<<<< HEAD
             ClientSize = new Size(587, 441);
+=======
+            ClientSize = new Size(514, 375);
+>>>>>>> 782bbf2f60df7c7da6b3df2c01340e7adb97556b
             Controls.Add(Product_PriceCurrencyDisplay);
             Controls.Add(Product_AddButton);
             Controls.Add(Product_IconLabel);
@@ -195,8 +228,12 @@
             Controls.Add(Product_NameLabel);
             Controls.Add(Product_NameInput);
             Controls.Add(McDo_Icon);
+<<<<<<< HEAD
             Margin = new Padding(3, 4, 3, 4);
             MinimumSize = new Size(603, 481);
+=======
+            MinimumSize = new Size(530, 416);
+>>>>>>> 782bbf2f60df7c7da6b3df2c01340e7adb97556b
             Name = "ProductAdd";
             Text = "Product Add";
             Load += ProductAdd_Load;

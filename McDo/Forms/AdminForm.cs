@@ -197,10 +197,13 @@ namespace McDo.Forms
 
             LoadCategoryProducts(ActiveCategory);
         }
+<<<<<<< HEAD
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
+=======
+>>>>>>> 782bbf2f60df7c7da6b3df2c01340e7adb97556b
     }
 }
