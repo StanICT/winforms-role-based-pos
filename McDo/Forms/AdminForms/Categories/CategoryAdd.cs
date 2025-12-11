@@ -13,6 +13,7 @@ namespace McDo.Forms.AdminForms.Categories
             Products = products;
 
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         public Category? GetAddedCategory()

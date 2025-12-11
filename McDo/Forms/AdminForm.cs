@@ -17,6 +17,12 @@ namespace McDo.Forms
             InitializeComponent();
 
             Setup();
+            this.StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        public AdminForm()
+        {
+            MessageBox.Show("AdminForm constructor start");
         }
 
         protected void Setup()
@@ -70,6 +76,7 @@ namespace McDo.Forms
 
             Main.Products.RemoveCategory(ActiveCategory);
             LoadCategorySelectionSidebar();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void Category_ProductAdd_Click(object sender, EventArgs e)
@@ -129,7 +136,8 @@ namespace McDo.Forms
                 {
                     Text = p.Name,
                     ImageKey = key,
-                    BackColor = Color.Goldenrod,
+                    Tag = p.Id,
+                    //BackColor = Color.Goldenrod,
                 };
 
                 pListItems.Add(item);
@@ -141,10 +149,10 @@ namespace McDo.Forms
             Button button = new()
             {
                 Text = category.Name,
-                Width = 100,
+                Width = 129,
                 Height = 40,
                 //BackColor = Color.Goldenrod,
-                //Font = new Font("Helvetica", 9.0, FontStyle.Regular),
+                Font = new Font("Helvetica", 9f, FontStyle.Regular),
                 ForeColor = Color.Black,
                 FlatStyle = FlatStyle.Flat,
                 Margin = new Padding(5),
@@ -167,6 +175,32 @@ namespace McDo.Forms
 
             // Load Products of the Category
             LoadCategoryProducts(category);
+        }
+
+        private void Category_ProductList_MouseClick(object sender, MouseEventArgs e)
+        {
+            ListViewHitTestInfo hit = Category_ProductList.HitTest(e.Location);
+            var item = hit.Item;
+
+            if (item == null)
+                return;
+
+            Product? product = Main.Products.GetProduct((int)item.Tag!);
+            if (product == null)
+                return;
+
+            var productManageForm = new ProductManage(Main.Products, product);
+            var result = productManageForm.ShowDialog();
+
+            if (result != DialogResult.OK)
+                return;
+
+            LoadCategoryProducts(ActiveCategory);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

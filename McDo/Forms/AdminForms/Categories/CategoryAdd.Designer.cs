@@ -41,44 +41,52 @@
             // 
             // Category_NameInput
             // 
-            Category_NameInput.Location = new Point(122, 29);
+            Category_NameInput.Font = new Font("Helvetica", 9F);
+            Category_NameInput.Location = new Point(139, 34);
+            Category_NameInput.Margin = new Padding(3, 4, 3, 4);
             Category_NameInput.Name = "Category_NameInput";
             Category_NameInput.PlaceholderText = "Fries and Burgers, etc ...";
-            Category_NameInput.Size = new Size(192, 25);
+            Category_NameInput.Size = new Size(219, 25);
             Category_NameInput.TabIndex = 0;
             // 
             // Category_NameLabel
             // 
             Category_NameLabel.AutoSize = true;
-            Category_NameLabel.Location = new Point(122, 9);
+            Category_NameLabel.Font = new Font("Helvetica", 9F);
+            Category_NameLabel.Location = new Point(139, 11);
             Category_NameLabel.Name = "Category_NameLabel";
-            Category_NameLabel.Size = new Size(100, 17);
+            Category_NameLabel.Size = new Size(112, 17);
             Category_NameLabel.TabIndex = 1;
             Category_NameLabel.Text = "Category Name";
             // 
             // Category_DescLabel
             // 
             Category_DescLabel.AutoSize = true;
-            Category_DescLabel.Location = new Point(122, 81);
+            Category_DescLabel.Font = new Font("Helvetica", 9F);
+            Category_DescLabel.Location = new Point(139, 95);
             Category_DescLabel.Name = "Category_DescLabel";
-            Category_DescLabel.Size = new Size(131, 17);
+            Category_DescLabel.Size = new Size(146, 17);
             Category_DescLabel.TabIndex = 3;
             Category_DescLabel.Text = "Category Description";
             // 
             // Category_DescInput
             // 
-            Category_DescInput.Location = new Point(12, 104);
+            Category_DescInput.Font = new Font("Helvetica", 9F);
+            Category_DescInput.Location = new Point(14, 122);
+            Category_DescInput.Margin = new Padding(3, 4, 3, 4);
             Category_DescInput.Name = "Category_DescInput";
             Category_DescInput.Placeholder = "Fries and burgers you'll never forget, ...";
-            Category_DescInput.Size = new Size(302, 172);
+            Category_DescInput.Size = new Size(345, 202);
             Category_DescInput.TabIndex = 4;
             Category_DescInput.Text = "";
             // 
             // Category_AddButton
             // 
-            Category_AddButton.Location = new Point(216, 346);
+            Category_AddButton.Font = new Font("Helvetica", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Category_AddButton.Location = new Point(247, 407);
+            Category_AddButton.Margin = new Padding(3, 4, 3, 4);
             Category_AddButton.Name = "Category_AddButton";
-            Category_AddButton.Size = new Size(98, 28);
+            Category_AddButton.Size = new Size(112, 33);
             Category_AddButton.TabIndex = 5;
             Category_AddButton.Text = "Add";
             Category_AddButton.UseVisualStyleBackColor = true;
@@ -89,24 +97,26 @@
             McDo_Icon.BackColor = Color.WhiteSmoke;
             McDo_Icon.BorderStyle = BorderStyle.Fixed3D;
             McDo_Icon.Image = (Image)resources.GetObject("McDo_Icon.Image");
-            McDo_Icon.Location = new Point(0, -3);
+            McDo_Icon.Location = new Point(0, -4);
+            McDo_Icon.Margin = new Padding(3, 4, 3, 4);
             McDo_Icon.Name = "McDo_Icon";
-            McDo_Icon.Size = new Size(121, 101);
+            McDo_Icon.Size = new Size(138, 118);
             McDo_Icon.SizeMode = PictureBoxSizeMode.StretchImage;
             McDo_Icon.TabIndex = 6;
             McDo_Icon.TabStop = false;
             // 
             // CategoryAdd
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(326, 386);
+            ClientSize = new Size(373, 454);
             Controls.Add(McDo_Icon);
             Controls.Add(Category_AddButton);
             Controls.Add(Category_DescInput);
             Controls.Add(Category_DescLabel);
             Controls.Add(Category_NameLabel);
             Controls.Add(Category_NameInput);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "CategoryAdd";
             Text = "Add Category";
             ((System.ComponentModel.ISupportInitialize)McDo_Icon).EndInit();

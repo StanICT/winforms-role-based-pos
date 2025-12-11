@@ -54,6 +54,9 @@ namespace McDo.Setup
             SetupDir();
 
             File.WriteAllText(Path.Combine(ConfigFolder!, "app_config.json"), content);
+
+            // Keep in-memory configuration in sync so callers don't need to restart
+            Configuration = config;
         }
 
         protected SetupConfig? GetConfig()

@@ -21,12 +21,15 @@ namespace McDo
         {
             DbCtx.Database.EnsureCreated();
 
-            AdminForm = new(this);
-            CustomerForm = new();
+            // Initialize setup first so configuration runs before main forms are created
+            Initialize();
 
+            // Create shared managers before forms so forms receive fully-initialized dependencies
             Products = new(DbCtx);
 
-            Initialize();
+            // Create forms after managers are ready
+            AdminForm = new(this);
+            CustomerForm = new();
         }
 
         public static void Run()
