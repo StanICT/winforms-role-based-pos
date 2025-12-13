@@ -63,11 +63,13 @@ namespace McDo.Forms
             // McDo_Icon
             // 
             McDo_Icon.BackColor = Color.WhiteSmoke;
+            McDo_Icon.BackgroundImageLayout = ImageLayout.None;
+            McDo_Icon.BorderStyle = BorderStyle.Fixed3D;
             McDo_Icon.Image = (Image)resources.GetObject("McDo_Icon.Image");
-            McDo_Icon.Location = new Point(0, -28);
+            McDo_Icon.Location = new Point(-2, -18);
             McDo_Icon.Margin = new Padding(3, 4, 3, 4);
             McDo_Icon.Name = "McDo_Icon";
-            McDo_Icon.Size = new Size(145, 200);
+            McDo_Icon.Size = new Size(148, 153);
             McDo_Icon.SizeMode = PictureBoxSizeMode.StretchImage;
             McDo_Icon.TabIndex = 1;
             McDo_Icon.TabStop = false;

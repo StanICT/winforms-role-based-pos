@@ -152,6 +152,7 @@ namespace McDo.Forms
                 Width = 129,
                 Height = 40,
                 //BackColor = Color.Goldenrod,
+                UseVisualStyleBackColor = true,
                 Font = new Font("Helvetica", 9f, FontStyle.Regular),
                 ForeColor = Color.Black,
                 FlatStyle = FlatStyle.Flat,
@@ -197,13 +198,10 @@ namespace McDo.Forms
 
             LoadCategoryProducts(ActiveCategory);
         }
-<<<<<<< HEAD
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
-=======
->>>>>>> 782bbf2f60df7c7da6b3df2c01340e7adb97556b
     }
 }

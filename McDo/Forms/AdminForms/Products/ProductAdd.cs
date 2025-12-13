@@ -1,14 +1,25 @@
 ﻿using McDo.Database.Tables;
 using McDo.Modules.Product;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 namespace McDo.Forms.AdminForms.Products
 {
-    public struct ProductData(string name, double price, byte[] icon)
+    public struct ProductData
     {
-        public string Name = name;
+        public string Name;
         public string? Description;
-        public double Price = price;
-        public byte[] Icon = icon;
+        public double Price;
+        public byte[]? Icon;
+
+        public ProductData(string name, double price, byte[]? icon)
+        {
+            Name = name;
+            Description = null;
+            Price = price;
+            Icon = icon;
+        }
     }
 
     public partial class ProductAdd : Form
@@ -16,7 +27,7 @@ namespace McDo.Forms.AdminForms.Products
         protected ProductManager Products;
         protected Category ProductCategory;
 
-        protected ProductData Data = new("", 0, []);
+        protected ProductData Data = new("", 0, null);
         protected Product? AddedProduct = null;
 
         public ProductAdd(ProductManager products, Category productCategory)
@@ -25,7 +36,7 @@ namespace McDo.Forms.AdminForms.Products
             ProductCategory = productCategory;
 
             InitializeComponent();
-
+            this.StartPosition = FormStartPosition.CenterScreen;
             Setup();
         }
 
@@ -47,26 +58,18 @@ namespace McDo.Forms.AdminForms.Products
 
         public bool Retrieve()
         {
-            // Name
             Data.Name = Product_NameInput.Text;
-
-            // Description
             Data.Description = Product_DescInput.Text;
 
-            // Price
             if (!RetrievePrice())
             {
                 Product_PriceInput.Focus();
-
                 Product_PriceLabel.Text = "Invalid Price";
                 Product_PriceLabel.ForeColor = Color.Red;
-
                 return false;
             }
 
-            // Icon
-            RetrieveIcon(); // TODO: Validator if Icon will be required
-
+            RetrieveIcon();
             return true;
         }
 
@@ -77,12 +80,15 @@ namespace McDo.Forms.AdminForms.Products
 
         public bool RetrieveIcon()
         {
-            using var stream = Product_IconFileInput.OpenFile();
+            if (Product_Icon.Image == null)
+            {
+                Data.Icon = null;
+                return false;
+            }
+
             using var memstream = new MemoryStream();
-
-            stream.CopyTo(memstream);
+            Product_Icon.Image.Save(memstream, System.Drawing.Imaging.ImageFormat.Png);
             Data.Icon = memstream.ToArray();
-
             return true;
         }
 
@@ -95,7 +101,14 @@ namespace McDo.Forms.AdminForms.Products
             if (!Retrieve())
                 return;
 
-            AddedProduct = Products.AddProduct(ProductCategory, Data.Name, Data.Description ?? "", Data.Price, Data.Icon);
+            AddedProduct = Products.AddProduct(
+                ProductCategory,
+                Data.Name,
+                Data.Description ?? "",
+                Data.Price,
+                Data.Icon ?? Array.Empty<byte>()
+            );
+
             this.DialogResult = DialogResult.OK;
         }
 

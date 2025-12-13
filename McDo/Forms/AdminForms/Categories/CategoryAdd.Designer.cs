@@ -55,7 +55,7 @@
             Category_NameLabel.Font = new Font("Helvetica", 9F);
             Category_NameLabel.Location = new Point(139, 11);
             Category_NameLabel.Name = "Category_NameLabel";
-            Category_NameLabel.Size = new Size(112, 17);
+            Category_NameLabel.Size = new Size(148, 17);
             Category_NameLabel.TabIndex = 1;
             Category_NameLabel.Text = "Category Name";
             // 

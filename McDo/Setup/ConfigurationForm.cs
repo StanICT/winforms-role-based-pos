@@ -154,10 +154,8 @@ namespace McDo.Setup
 
                 File.WriteAllText(path, json);
 
-                // Set the strongly-typed UserType so the caller (Setup.Configure) can read it
                 this.UserType = selectedType == "Admin" ? ConfigUserType.Admin : ConfigUserType.Customer;
 
-                // Close the modal dialog successfully so the caller can continue initialization
                 this.DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
