@@ -34,15 +34,54 @@ namespace McDo.Forms.AdminForms.Products
             SetupIconReader();
         }
 
+        // helper: create a detached bitmap copy in a safe pixel format
+        private static Bitmap CreateCompatibleBitmap(Image src)
+        {
+            var bmp = new Bitmap(src.Width, src.Height, PixelFormat.Format32bppArgb);
+            using var g = Graphics.FromImage(bmp);
+            g.DrawImage(src, 0, 0, src.Width, src.Height);
+            return bmp;
+        }
+
+        private static bool IsWebP(byte[] data)
+        {
+            if (data == null || data.Length < 12) return false;
+            // WebP files start with "RIFF" and have "WEBP" at bytes 8..11
+            return data[0] == (byte)'R' && data[1] == (byte)'I' && data[2] == (byte)'F' && data[3] == (byte)'F'
+                && data[8] == (byte)'W' && data[9] == (byte)'E' && data[10] == (byte)'B' && data[11] == (byte)'P';
+        }
+
         protected void SetupIconReader()
         {
-            Product_IconFileInput.Filter = "Images|*.png;*.jpg;*.jpeg;*.webp;*.bmp";
+            // webp isn't supported by System.Drawing on all platforms; exclude from filter
+            Product_IconFileInput.Filter = "Images|*.png;*.jpg;*.jpeg;*.bmp";
             Product_Icon.SizeMode = PictureBoxSizeMode.Zoom;
 
             if (Product.Icon != null && Product.Icon.Length > 0)
             {
-                using var memstream = new MemoryStream(Product.Icon);
-                Product_Icon.Image = Image.FromStream(memstream);
+                try
+                {
+                    if (IsWebP(Product.Icon))
+                    {
+                        // cannot decode webp with System.Drawing safely
+                        Product_Icon.Image?.Dispose();
+                        Product_Icon.Image = null;
+                        return;
+                    }
+
+                    // Use a MemoryStream so Image.FromStream gets a complete, seekable stream
+                    using var memstream = new MemoryStream(Product.Icon);
+                    using var img = Image.FromStream(memstream, true, true);
+                    // create a detached copy to avoid keeping the underlying stream open
+                    Product_Icon.Image?.Dispose();
+                    Product_Icon.Image = CreateCompatibleBitmap(img);
+                }
+                catch (System.Exception)
+                {
+                    // If bytes are invalid or not a recognized image, fail gracefully
+                    Product_Icon.Image?.Dispose();
+                    Product_Icon.Image = null;
+                }
             }
             else
             {
@@ -88,12 +127,22 @@ namespace McDo.Forms.AdminForms.Products
                 return false;
             }
 
-            using var memstream = new MemoryStream();
-            Product_Icon.Image.Save(memstream, System.Drawing.Imaging.ImageFormat.Png);
-            TempData.Icon = memstream.ToArray();
-            return true;
+            try
+            {
+                // make a compatible copy of the image and save the copy to a memory stream to avoid GDI+ errors
+                using var bmp = CreateCompatibleBitmap(Product_Icon.Image);
+                using var memstream = new MemoryStream();
+                bmp.Save(memstream, ImageFormat.Png);
+                TempData.Icon = memstream.ToArray();
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show($"Failed to read icon: {ex.Message}", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                TempData.Icon = null;
+                return false;
+            }
         }
-
 
         private void ProductManage_Load(object sender, EventArgs e)
         {
@@ -109,7 +158,7 @@ namespace McDo.Forms.AdminForms.Products
             Product.Price = TempData.Price;
 
             if (TempData.Icon != null)
-                Product.Icon = TempData.Icon; // only update if new icon chosen
+                Product.Icon = TempData.Icon;
 
             Products.Context.SaveChanges();
             this.DialogResult = DialogResult.OK;
@@ -121,8 +170,28 @@ namespace McDo.Forms.AdminForms.Products
             if (result != DialogResult.OK)
                 return;
 
-            Product_Icon.Image?.Dispose();
-            Product_Icon.Image = Image.FromFile(Product_IconFileInput.FileName);
+            // load image without locking the source file and create a detached copy
+            try
+            {
+                // read all bytes first to avoid locking and ensure complete data
+                var bytes = File.ReadAllBytes(Product_IconFileInput.FileName);
+
+                if (IsWebP(bytes))
+                {
+                    MessageBox.Show("WebP images are not supported. Please use PNG or JPEG.", "Unsupported Image", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                using var memstream = new MemoryStream(bytes);
+                using var img = Image.FromStream(memstream, true, true);
+
+                Product_Icon.Image?.Dispose();
+                Product_Icon.Image = CreateCompatibleBitmap(img);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show($"Failed to load image: {ex.Message}", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Product_DeleteButton_Click(object sender, EventArgs e)

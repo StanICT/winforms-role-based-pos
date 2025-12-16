@@ -53,12 +53,13 @@ namespace McDo.Forms
             Category_SelectionSidebar.AutoScroll = true;
             Category_SelectionSidebar.FlowDirection = FlowDirection.TopDown;
             Category_SelectionSidebar.Font = new Font("Helvetica", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Category_SelectionSidebar.Location = new Point(1, 162);
+            Category_SelectionSidebar.Location = new Point(-2, 162);
             Category_SelectionSidebar.Margin = new Padding(3, 4, 3, 4);
             Category_SelectionSidebar.Name = "Category_SelectionSidebar";
-            Category_SelectionSidebar.Size = new Size(145, 498);
+            Category_SelectionSidebar.Size = new Size(146, 498);
             Category_SelectionSidebar.TabIndex = 6;
             Category_SelectionSidebar.WrapContents = false;
+            Category_SelectionSidebar.Paint += Category_SelectionSidebar_Paint;
             // 
             // McDo_Icon
             // 
@@ -69,7 +70,7 @@ namespace McDo.Forms
             McDo_Icon.Location = new Point(-2, -18);
             McDo_Icon.Margin = new Padding(3, 4, 3, 4);
             McDo_Icon.Name = "McDo_Icon";
-            McDo_Icon.Size = new Size(148, 153);
+            McDo_Icon.Size = new Size(146, 153);
             McDo_Icon.SizeMode = PictureBoxSizeMode.StretchImage;
             McDo_Icon.TabIndex = 1;
             McDo_Icon.TabStop = false;
@@ -117,7 +118,7 @@ namespace McDo.Forms
             Category_Add.BackColor = Color.Gold;
             Category_Add.FlatStyle = FlatStyle.Popup;
             Category_Add.Font = new Font("Helvetica", 9F);
-            Category_Add.Location = new Point(0, 689);
+            Category_Add.Location = new Point(-2, 689);
             Category_Add.Margin = new Padding(3, 4, 3, 4);
             Category_Add.Name = "Category_Add";
             Category_Add.Size = new Size(146, 51);

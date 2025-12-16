@@ -50,7 +50,30 @@
             // 
             McDo_Icon.BackColor = Color.WhiteSmoke;
             McDo_Icon.BorderStyle = BorderStyle.Fixed3D;
-            McDo_Icon.Image = (Image)resources.GetObject("McDo_Icon.Image");
+            try
+            {
+                var _resObj = resources.GetObject("McDo_Icon.Image");
+                if (_resObj is Image _img)
+                {
+                    McDo_Icon.Image = new Bitmap(_img);
+                }
+                else if (_resObj is byte[] _bytes)
+                {
+                    using (var _ms = new System.IO.MemoryStream(_bytes))
+                    using (var _tmp = Image.FromStream(_ms))
+                    {
+                        McDo_Icon.Image = new Bitmap(_tmp);
+                    }
+                }
+                else
+                {
+                    McDo_Icon.Image = null;
+                }
+            }
+            catch
+            {
+                McDo_Icon.Image = null;
+            }
             McDo_Icon.Location = new Point(-10, -2);
             McDo_Icon.Margin = new Padding(3, 4, 3, 4);
             McDo_Icon.Name = "McDo_Icon";

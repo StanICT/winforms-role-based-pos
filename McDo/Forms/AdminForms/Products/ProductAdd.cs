@@ -86,10 +86,20 @@ namespace McDo.Forms.AdminForms.Products
                 return false;
             }
 
-            using var memstream = new MemoryStream();
-            Product_Icon.Image.Save(memstream, System.Drawing.Imaging.ImageFormat.Png);
-            Data.Icon = memstream.ToArray();
-            return true;
+            try
+            {
+                using var bmp = new Bitmap(Product_Icon.Image);
+                using var memstream = new MemoryStream();
+                bmp.Save(memstream, System.Drawing.Imaging.ImageFormat.Png);
+                Data.Icon = memstream.ToArray();
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show($"Failed to retrieve icon: {ex.Message}", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Data.Icon = null;
+                return false;
+            }
         }
 
         private void ProductAdd_Load(object sender, EventArgs e)
@@ -98,28 +108,44 @@ namespace McDo.Forms.AdminForms.Products
 
         private void Product_AddButton_Click(object sender, EventArgs e)
         {
-            if (!Retrieve())
-                return;
+            try
+            {
+                if (!Retrieve())
+                    return;
 
-            AddedProduct = Products.AddProduct(
-                ProductCategory,
-                Data.Name,
-                Data.Description ?? "",
-                Data.Price,
-                Data.Icon ?? Array.Empty<byte>()
-            );
+                AddedProduct = Products.AddProduct(
+                    ProductCategory,
+                    Data.Name,
+                    Data.Description ?? "",
+                    Data.Price,
+                    Data.Icon ?? Array.Empty<byte>()
+                );
 
-            this.DialogResult = DialogResult.OK;
+                this.DialogResult = DialogResult.OK;
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Unhandled Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void Product_Icon_Click(object sender, EventArgs e)
+        private void Product_Icon_Click(object sender, System.EventArgs e)
         {
             var result = Product_IconFileInput.ShowDialog();
             if (result != DialogResult.OK)
                 return;
 
-            Product_Icon.Image?.Dispose();
-            Product_Icon.Image = Image.FromFile(Product_IconFileInput.FileName);
+            try
+            {
+                using var fs = File.OpenRead(Product_IconFileInput.FileName);
+                using var img = Image.FromStream(fs);
+                Product_Icon.Image?.Dispose();
+                Product_Icon.Image = new Bitmap(img);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show($"Failed to load image: {ex.Message}\n{ex}", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

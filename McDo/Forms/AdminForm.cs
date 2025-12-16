@@ -1,6 +1,8 @@
 ﻿using McDo.Database.Tables;
 using McDo.Forms.AdminForms.Categories;
 using McDo.Forms.AdminForms.Products;
+using System.Drawing;
+using System.IO;
 
 namespace McDo.Forms
 {
@@ -115,6 +117,14 @@ namespace McDo.Forms
             }
         }
 
+        private static bool IsWebP(byte[]? data)
+        {
+            if (data == null || data.Length < 12) return false;
+            // WebP files start with "RIFF" and have "WEBP" at bytes 8..11
+            return data[0] == (byte)'R' && data[1] == (byte)'I' && data[2] == (byte)'F' && data[3] == (byte)'F'
+                && data[8] == (byte)'W' && data[9] == (byte)'E' && data[10] == (byte)'B' && data[11] == (byte)'P';
+        }
+
         private void LoadCategoryProducts(Category category)
         {
             var pList = Category_ProductList;
@@ -129,8 +139,42 @@ namespace McDo.Forms
             {
                 string key = $"{p.Name}_{images.Count}";
 
-                using (var memstream = new MemoryStream(p.Icon))
-                    images.Add(key, Image.FromStream(memstream));
+                // Safely handle invalid or unsupported image bytes
+                try
+                {
+                    if (p.Icon == null || p.Icon.Length == 0)
+                    {
+                        // fallback: use a default embedded resource image if available
+                        images.Add(key, Properties.Resources.Untitled_design__1_);
+                    }
+                    else if (IsWebP(p.Icon))
+                    {
+                        // WebP isn't supported here; fallback to default
+                        images.Add(key, Properties.Resources.Untitled_design__1_);
+                    }
+                    else
+                    {
+                        using (var memstream = new MemoryStream(p.Icon))
+                        using (var img = Image.FromStream(memstream, true, true))
+                        {
+                            // create a detached copy so stream can be disposed
+                            images.Add(key, new Bitmap(img));
+                        }
+                    }
+                }
+                catch (System.Exception)
+                {
+                    // If bytes are invalid or not a recognized image, add a default placeholder
+                    try
+                    {
+                        images.Add(key, Properties.Resources.Untitled_design__1_);
+                    }
+                    catch
+                    {
+                        // last resort: add an empty 64x64 bitmap
+                        images.Add(key, new Bitmap(64, 64));
+                    }
+                }
 
                 ListViewItem item = new()
                 {
@@ -200,6 +244,11 @@ namespace McDo.Forms
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Category_SelectionSidebar_Paint(object sender, PaintEventArgs e)
         {
 
         }
