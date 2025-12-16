@@ -123,6 +123,7 @@
             Customer_ProductList.Size = new Size(249, 498);
             Customer_ProductList.TabIndex = 21;
             Customer_ProductList.UseCompatibleStateImageBehavior = false;
+            Customer_ProductList.SelectedIndexChanged += Customer_ProductList_SelectedIndexChanged;
             // 
             // pictureBox1
             // 
@@ -157,6 +158,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
+            this.Customer_ProductList.DoubleClick += new System.EventHandler(this.Customer_ProductList_DoubleClick);
 
         }
 

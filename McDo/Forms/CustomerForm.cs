@@ -1,4 +1,5 @@
 ﻿using McDo.Database.Tables;
+using McDo.Forms.CustomerForms;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,6 +7,7 @@ namespace McDo.Forms
 {
     public partial class CustomerForm : Form
     {
+        private List<Product> CartItems = new List<Product>();
         protected Category ActiveCategory = null!;
         private readonly McDoMain Main;
 
@@ -107,7 +109,55 @@ namespace McDo.Forms
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            // optional: logo click handler
+            var cartForm = new CartForm();
+
+            var products = new List<Product>();
+            foreach (ListViewItem li in Customer_ProductList.SelectedItems)
+            {
+                int productId = (int)li.Tag;
+                // ✅ FIX: use ActiveCategory.Products instead of ActiveProducts
+                var product = ActiveCategory.Products.FirstOrDefault(p => p.Id == productId);
+                if (product != null)
+                    products.Add(product);
+            }
+
+            cartForm.LoadCart(products);
+            cartForm.ShowDialog();
+        }
+
+        private void Customer_ProductList_DoubleClick(object sender, EventArgs e)
+        {
+            if (Customer_ProductList.SelectedItems.Count == 0) return;
+
+            var item = Customer_ProductList.SelectedItems[0];
+            int productId = (int)item.Tag;
+
+            var product = ActiveCategory.Products.FirstOrDefault(p => p.Id == productId);
+
+            if (product == null) return;
+
+            var result = MessageBox.Show(
+                $"Add {product.Name} to cart?",
+                "Add to Cart",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                AddToCart(product);
+            }
+        }
+
+        private void AddToCart(Product product)
+        {
+            CartItems.Add(product);
+            MessageBox.Show($"{product.Name} added to cart!", "Cart Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void Customer_ProductList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

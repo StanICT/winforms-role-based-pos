@@ -193,14 +193,13 @@ namespace McDo.Forms
             Button button = new()
             {
                 Text = category.Name,
-                Width = 129,
+                Width = 140,
                 Height = 40,
-                //BackColor = Color.Goldenrod,
-                UseVisualStyleBackColor = true,
+                Margin = new Padding(6),
                 Font = new Font("Helvetica", 9f, FontStyle.Regular),
+                BackColor = Color.White,
                 ForeColor = Color.Black,
-                FlatStyle = FlatStyle.Flat,
-                Margin = new Padding(5),
+                FlatStyle = FlatStyle.Standard
             };
 
             button.Click += (s, e) =>
