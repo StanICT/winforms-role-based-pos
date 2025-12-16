@@ -130,9 +130,8 @@ namespace McDo.Forms.AdminForms.Products
             try
             {
                 // make a compatible copy of the image and save the copy to a memory stream to avoid GDI+ errors
-                using var bmp = CreateCompatibleBitmap(Product_Icon.Image);
                 using var memstream = new MemoryStream();
-                bmp.Save(memstream, ImageFormat.Png);
+                Product_Icon.Image.Save(memstream, ImageFormat.Png);
                 TempData.Icon = memstream.ToArray();
                 return true;
             }
@@ -162,6 +161,7 @@ namespace McDo.Forms.AdminForms.Products
 
             Products.Context.SaveChanges();
             this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void Product_Icon_Click(object sender, EventArgs e)

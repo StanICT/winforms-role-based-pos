@@ -32,6 +32,7 @@ namespace McDo.Forms.AdminForms.Products
 
         public ProductAdd(ProductManager products, Category productCategory)
         {
+
             Products = products;
             ProductCategory = productCategory;
 
@@ -88,10 +89,10 @@ namespace McDo.Forms.AdminForms.Products
 
             try
             {
-                using var bmp = new Bitmap(Product_Icon.Image);
                 using var memstream = new MemoryStream();
-                bmp.Save(memstream, System.Drawing.Imaging.ImageFormat.Png);
+                Product_Icon.Image.Save(memstream, System.Drawing.Imaging.ImageFormat.Png);
                 Data.Icon = memstream.ToArray();
+
                 return true;
             }
             catch (System.Exception ex)
@@ -122,6 +123,7 @@ namespace McDo.Forms.AdminForms.Products
                 );
 
                 this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             catch (System.Exception ex)
             {

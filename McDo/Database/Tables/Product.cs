@@ -1,4 +1,7 @@
-﻿namespace McDo.Database.Tables
+﻿using System.Drawing;
+using System.IO;
+
+namespace McDo.Database.Tables
 {
     public class Product
     {
@@ -13,5 +16,6 @@
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public Image? IconImage { get { if (Icon == null || Icon.Length == 0) return null; try { using var ms = new MemoryStream(Icon); return Image.FromStream(ms); } catch { return null; } } }
     }
 }

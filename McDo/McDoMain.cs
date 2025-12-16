@@ -28,8 +28,8 @@ namespace McDo
             Products = new(DbCtx);
 
             // Create forms after managers are ready
-            AdminForm = new(this);
-            CustomerForm = new();
+            AdminForm = new(this); 
+            CustomerForm = new(this);
         }
 
         public static void Run()
@@ -37,10 +37,18 @@ namespace McDo
             ApplicationConfiguration.Initialize();
 
             main_ = new McDoMain();
-            McDo.Setup.SetupConfig config = main_.Setup.GetConfiguration()!;
+            var config = main_.Setup.GetConfiguration()!;
 
-            Application.Run(config.UserType == CUserType.Admin ? main_.AdminForm : main_.CustomerForm);
+            if (config.UserType == CUserType.Admin)
+            {
+                Application.Run(main_.AdminForm);
+            }
+            else
+            {
+                Application.Run(main_.CustomerForm);
+            }
         }
+
 
         protected void Initialize()
         {
